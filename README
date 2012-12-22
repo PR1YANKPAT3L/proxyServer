@@ -1,0 +1,31 @@
+A simple proxy server with the following characteristics:
+ - HTTP only.
+ - No keep-alive
+ - Opens a new connection to the target server every time a client
+   connection requests for it.
+ - No caching.
+ - Supports UTF-8 URLs (not tested)
+ - Supports GET, POST and all other methods.
+ - Supports HTTP video streaming, for e.g., youtube.
+ - Supports logging of HTTP traffic from both client and server side.
+ - Supports reading of chunked transfer encoding. 
+   In the log files, even though the Transfer-encoding might specify
+   "chunked", the data logged has already been decoded.
+
+Feel free to modify the code for your own use. 
+But please acknowledge the original author. Thanks!
+
+Building
+=========
+Simply compile ProxyServer.java
+
+Run
+=========
+Command: java ProxyServer <listen-port>
+
+Log files will be created as proxy.<thread-id>.<client/serv>.log
+For e.g., proxy.0.client.log stores all traffic received from the client.
+
+The headers shown in the log files are in unmodified form, and might not
+be the exact headers sent to the client/server.
+
