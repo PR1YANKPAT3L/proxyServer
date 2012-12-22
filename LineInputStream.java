@@ -73,6 +73,12 @@ public class LineInputStream extends InputStream
     }
 
     @Override
+    public int read(byte [] b) throws IOException
+    {
+        return read(b, 0, b.length);
+    }
+
+    @Override
     public int read(byte[] b, int off, int len)
         throws IOException
     {
@@ -80,11 +86,13 @@ public class LineInputStream extends InputStream
         {
             b[off] = (byte)(this.lastByte & 255);
             this.hasLastByte = false;
-            off ++;
-            len --;
+            int read = this.ist.read(b, off+1, len-1);
+            if (read < 0) return 1;
+            return read+1;
         }
 
-        return this.ist.read(b, off, len);
+        int read = this.ist.read(b, off, len);
+        return read;
     }
 
     @Override
