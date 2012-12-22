@@ -17,14 +17,19 @@ But please acknowledge the original author. Thanks!
 
 Building
 =========
-Simply compile ProxyServer.java
+Simply compile ProxyServer.java with
+javac -cp "javaOpts:." ProxyServer.java
+
+If you're on windows, you might need to change the colon to semi-colon ;
 
 Run
 =========
-Command: java ProxyServer <listen-port> [options]
+Command: java -cp "javaOpts:." ProxyServer [options]
 options:
 -t : Number of threads. Default is 3
 -s : No logging. Default is to log
+-n : Number of listen back log [Default=20]
+-p : Listen port [Required]
 
 Log files will be created as proxy.<thread-id>.<client/serv>.log
 For e.g., proxy.0.client.log stores all traffic received from the client.
