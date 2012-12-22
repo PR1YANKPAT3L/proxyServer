@@ -1,11 +1,14 @@
 /**
- * Reads line from a UTF-8 character stream.
  * @author Lucas Tan
  */
 
 import java.io.*;
 import java.util.*;
 
+/**
+ * This stream allows reading of a line in the UTF-8 charset, as well as, 
+ * reading of binary data from an underlying binary stream.
+ */
 public class LineInputStream extends InputStream
 {
     private final InputStream ist;
