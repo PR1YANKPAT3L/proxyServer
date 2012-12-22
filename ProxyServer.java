@@ -13,89 +13,39 @@ import java.net.*;
  */
 public class ProxyServer
 {
-    private static final int DEFAULT_NUM_THREADS = 3;
-    private static final boolean DEFAULT_LOGGING = true;
-
     private static class Options
     {
-        public int numThreads = DEFAULT_NUM_THREADS;
-        public boolean logging = DEFAULT_LOGGING;
-        public int port = -1;
-        public boolean ok = false;
+        // default values are specified in field declarations
 
-        public static void printUsage()
-        {
-            System.err.println(
-            "Usage: java ProxyServer <port> [options]\n"+
-            "Optional Options:\n"+
-            "-t : Number of threads [Default=3]\n"+
-            "-s : No logging [Default=log]\n"
-            );
-        }
+        @Option(name="t", required=false, 
+            description="Number of threads")
+        @OptionConstraintRange(min=1, max=20)
+        public int numThreads = 3;
 
-        public Options(String[] args)
-        {
-            try
-            {
-                parse(args);
+        @Option(name="s", required=false,
+            description="Specify to disable logging")
+        public boolean noLog = false;
 
-                if (port <= 0)
-                    throw new Exception("Please specify the listen port");
+        @Option(name="p", required=true,
+            description="Listen port")
+        @OptionConstraintRange(min=1, max=65535)
+        public int port;
 
-                if (numThreads <= 0)
-                    throw new Exception
-                        ("Please specify positive number of threads");
-
-                ok = true;
-            }
-            catch (Exception e)
-            {
-                System.err.println("error parsing options: "+e.getMessage());
-                
-                printUsage();
-            }
-        }
-
-        private void parse(String[] args) throws Exception
-        {
-            for (int i = 0; i < args.length; i++)
-            {
-                String a = args[i];
-                String next = i != args.length - 1 ? args[i+1] : null;
-
-                if(a.startsWith("-") && a.length() >= 2)
-                {
-                    char c = a.charAt(1);
-                    switch(c)
-                    {
-                    case 't':
-                        if (next == null)
-                            throw new Exception("no. of threads not specified");
-                        numThreads = Integer.parseInt(next);
-                        i++;
-                        break;
-
-                    case 's':
-                        logging = false;
-                        break;
-                    }
-                }
-                else
-                {
-                    port = Integer.parseInt(a);
-                }
-            }
-        }
+        @Option(name="n", required=false,
+            description="Number of listen back log")
+        @OptionConstraintRange(min=1, max=100)
+        public int maxBacklog = 20;
     }
 
     public static void main(String args[])
         throws Exception
     {
-        Options opts = new Options(args);
-        if (! opts.ok) return;
+        Options opts = new Options();
+        String[] extras = OptionParser.parse(opts, args);
+        if (extras == null) return;
 
-        // 20 max connections
-        final ServerSocket sock = new ServerSocket(opts.port, 20);
+        final ServerSocket sock = 
+            new ServerSocket(opts.port, opts.maxBacklog);
        
         final List<ClientHandler> handlers = new ArrayList<ClientHandler>();
         for (int i = 0; i < opts.numThreads; i++)
@@ -103,7 +53,7 @@ public class ProxyServer
             OutputStream bosClient = new NullOutputStream();
             OutputStream bosServ = bosClient;
 
-            if (opts.logging)
+            if (! opts.noLog)
             {
                 bosClient = new BufferedOutputStream(
                                 new FileOutputStream(
