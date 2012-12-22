@@ -27,9 +27,9 @@ public class ProxyServer
         {
             System.err.println(
             "Usage: java ProxyServer <port> [options]\n"+
-            "options:\n"+
-            "-t : Number of threads\n"+
-            "-s : No logging\n"
+            "Optional Options:\n"+
+            "-t : Number of threads [Default=3]\n"+
+            "-s : No logging [Default=log]\n"
             );
         }
 
