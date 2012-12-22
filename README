@@ -1,4 +1,4 @@
-A simple proxy server with the following characteristics:
+A simple multi-threaded proxy server with the following characteristics:
  - HTTP only.
  - No keep-alive
  - Opens a new connection to the target server every time a client
@@ -21,7 +21,10 @@ Simply compile ProxyServer.java
 
 Run
 =========
-Command: java ProxyServer <listen-port>
+Command: java ProxyServer <listen-port> [options]
+options:
+-t : Number of threads. Default is 3
+-s : No logging. Default is to log
 
 Log files will be created as proxy.<thread-id>.<client/serv>.log
 For e.g., proxy.0.client.log stores all traffic received from the client.
