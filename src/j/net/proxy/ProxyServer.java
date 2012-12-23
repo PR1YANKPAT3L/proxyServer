@@ -17,7 +17,8 @@ import j.io.*;
  */
 public class ProxyServer
 {
-    private static class Options
+    /** Must be public class */
+    public static class Options
     {
         // default values are specified in field declarations
 
