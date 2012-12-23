@@ -30,11 +30,11 @@ $(OUT_DIR)/%.xxx: %.jar
 	cd "$(OUT_DIR)"; jar -xf "../$<"
 
 $(OUT_DIR)/%.class: src/%.java
-	javac $(LIBS_OPTS) -d "$(OUT_DIR)" $? 
+	javac $(LIBS_OPTS) -cp "$(OUT_DIR)" -source 1.5 -target 1.5 -d "$(OUT_DIR)" $? 
 # $(?:src/%=%)
 
 $(JAR_FILE_NAME): $(CLASSES) $(LIBS_TARGETS)
-	jar -cfve "$@" j.net.proxy.ProxyServer -C "$(OUT_DIR)" .
+	jar -cfe "$@" j.net.proxy.ProxyServer -C "$(OUT_DIR)" .
 
 clean:
 	rm -rf "$(OUT_DIR)" "$(JAR_FILE_NAME)" *~ 
