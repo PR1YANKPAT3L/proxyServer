@@ -9,22 +9,21 @@ A simple multi-threaded proxy server with the following characteristics:
  - Supports HTTP video streaming, for e.g., youtube.
  - Supports logging of HTTP traffic from both client and server side.
  - Supports reading of chunked transfer encoding. 
-   In the log files, even though the Transfer-encoding might specify
-   "chunked", the data logged has already been decoded.
+   In the log files, even though Transfer-Encoding might specify
+   "chunked", the data logged would have been decoded for convenience.
 
 Feel free to modify the code for your own use. 
 But please acknowledge the original author. Thanks!
 
 Building
 =========
-Simply compile ProxyServer.java with
-javac -cp "javaOpts:." ProxyServer.java
-
-If you're on windows, you might need to change the colon to semi-colon ;
+1) Make sure the javac binary is in your PATH environment variable.
+2) Do a make in libjava dir to create libjava.jar
+3) Do a make in the current dir to create proxy.jar
 
 Run
 =========
-Command: java -cp "javaOpts:." ProxyServer [options]
+Command: java -jar proxy.jar [options]
 options:
 -t : Number of threads. Default is 3
 -s : No logging. Default is to log
