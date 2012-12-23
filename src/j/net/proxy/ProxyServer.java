@@ -4,9 +4,13 @@
  * @author Lucas Tan
  */
 
+package j.net.proxy;
+
 import java.io.*;
 import java.util.*;
 import java.net.*;
+import j.util.*;
+import j.io.*;
 
 /**
  * Main application.

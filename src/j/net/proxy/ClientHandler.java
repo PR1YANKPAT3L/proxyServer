@@ -3,10 +3,13 @@
  * @author Lucas Tan
  */
 
+package j.net.proxy;
+
 import java.io.*;
 import java.util.*;
 import java.net.*;
 import java.util.concurrent.*;
+import j.io.*;
 
 public class ClientHandler extends Thread
 {
