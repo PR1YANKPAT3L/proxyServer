@@ -1,19 +1,14 @@
-/**
- * It is strictly just a middleman that captures the HTTP traffic
- * between the client and server.
- * @author Lucas Tan
- */
-
 package j.net.proxy;
 
 import java.io.*;
 import java.util.*;
 import java.net.*;
-import j.util.*;
+import j.opt.*;
 import j.io.*;
 
 /**
  * Main application.
+ * @author Lucas Tan
  */
 public class ProxyServer
 {
@@ -46,7 +41,7 @@ public class ProxyServer
         throws Exception
     {
         Options opts = new Options();
-        String[] extras = OptionParser.parse(opts, args);
+        String[] extras = OptionUtil.parse(opts, args);
         if (extras == null) return;
 
         final ServerSocket sock = 
