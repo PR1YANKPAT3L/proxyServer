@@ -5,8 +5,8 @@
 
 ### Compiled binaries
 
-docs/*
 bin/*
+dist-*/*
 
 *.class
 
