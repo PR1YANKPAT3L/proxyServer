@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="proxy" basedir="." default="all">
+    <property name="libName" value="proxy" />
+    <property name="libVer" value="1.0.0" />
+    <property name="libMainClass" value="j.net.proxy.ProxyServer" />
+    <property name="libTestMainClass" value="" />
+
+    <import file="libjava/buildTempl.xml" />
+</project>
+
