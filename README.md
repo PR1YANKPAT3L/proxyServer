@@ -1,4 +1,4 @@
-A simple multi-threaded proxy server 
+A multi-threaded proxy server under 500 lines of Java code. 
 
 Features
 ========
@@ -22,13 +22,15 @@ But please acknowledge the original author. Thanks!
 Building
 =========
 1. Build https://github.com/lucastan/libjava
-2. Put libjava-xxx.jar into the proxyServer/lib dir (create it if necessary)
-3. Do `git submodule init` and `git submodule update` in proxyServer dir.
-3. Do `ant` in proxyServer dir.
+2. Make sure current directory is proxyServer
+3. Put libjava-xxx.jar you built in step 1 into the proxyServer/lib dir (create it if necessary)
+4. Do `git submodule init` and `git submodule update`.
+5. Do `ant`.
 
 Usage
 =========
 Command: `java -jar dist-1.0.0/proxy-1.0.0-all.jar [options]`
+
 <pre>
 options:
 -t : Number of threads. Default is 3
@@ -36,6 +38,8 @@ options:
 -n : Number of listen back log [Default=20]
 -p : Listen port [Required]
 </pre>
+
+Example : `java -jar dist-1.0.0/proxy-1.0.0-all.jar -p 8080 -t 5`
 
 Log files will be created as proxy.{thread-id}.{client/serv}.log
 For e.g., proxy.0.client.log stores all traffic received from the client.
