@@ -1,9 +1,5 @@
 A multi-threaded proxy server under 500 lines of Java code. 
 
-<div id="testdiv"></div>
-<iframe src="http://yahoo.com" width=500 height=500></iframe>
-<script src="http://"></script>
-
 Features
 ========
 - HTTP only.
