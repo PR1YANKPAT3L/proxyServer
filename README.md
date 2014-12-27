@@ -1,4 +1,4 @@
-A multi-threaded proxy server under 500 lines of Java code. 
+A multi-threaded proxy server under 500 lines of Java code.
 
 Features
 ========
@@ -11,19 +11,19 @@ Features
 - Supports GET, POST and all other methods.
 - Supports HTTP video streaming, for e.g., youtube.
 - Supports logging of HTTP traffic from both client and server side.
-- Supports reading of chunked transfer encoding. 
+- Supports reading of chunked transfer encoding.
    In the log files, even though Transfer-Encoding might specify
    "chunked", the data logged would have been decoded for convenience.
 
-Feel free to modify the code for your own use. 
+Feel free to modify the code for your own use.
 
 But please acknowledge the original author. Thanks!
 
-Building
-=========
-1. Build https://github.com/lucastan/libjava
+Building using ANT
+==================
+1. Build https://github.com/lucastan/java-utils
 2. Make sure current directory is proxyServer
-3. Put libjava-xxx.jar you built in step 1 into the proxyServer/lib dir (create it if necessary)
+3. Put `java-utils-xxx.jar` you built in step 1 into the `proxyServer/lib` dir (create it if necessary)
 4. Do `git submodule init` and `git submodule update`.
 5. Do `ant`.
 
