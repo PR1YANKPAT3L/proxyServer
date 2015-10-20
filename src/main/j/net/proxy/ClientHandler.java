@@ -244,7 +244,8 @@ public class ClientHandler extends Thread
         for (String line : headers)
         {
             final String lineLower = line.toLowerCase();
-            
+            boolean isChunkedHeader = false;
+
             if (lineLower.startsWith(CONTENT_LENGTH))
             {
                 data.contentLen = Integer.parseInt(line.substring(CONTENT_LENGTH.length()).trim());
@@ -252,10 +253,13 @@ public class ClientHandler extends Thread
             else if (lineLower.startsWith(TRANSFER_ENCODING))
             {
                 if (lineLower.indexOf("chunked") >= 0)
+                {
                     data.chunked = true;
+                    isChunkedHeader = true;
+                }
             }
         
-            if (! data.chunked &&
+            if (! isChunkedHeader &&
                 ! lineLower.startsWith(CONNECTION)
              && ! lineLower.startsWith(PROXY_CONNECTION))
             {
